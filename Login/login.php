@@ -1,3 +1,32 @@
+<?php
+$host="localhost";
+$user="root";
+$password="";
+$db="studi-kasus"
+
+mysql_connect($host,$user,$password);
+
+mysql_select_db($db);
+
+if($_POST(isset(['email']))){
+    $uname=$_POST['email'];
+    $password=$_POST['password'];
+
+    $sql="select * from studi-kasus where user='".$uname."'AND Pass='".$password."' limit 1";
+
+    $result=mysql_query($sql);
+
+    if(mysql_num_rows($result)==1){
+        echo " Tou Have Successfully Logged in";
+        exit();
+    }
+    else{
+        echo " You Have Entered Wrong Password";
+        exit();
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +49,7 @@
 					<div class="card fat">
 						<div class="card-body">
 							<h4 class="card-title">Login</h4>
-							<form method="POST" class="my-login-validation" novalidate="">
+							<form method="POST" class="my-login-validation" novalidate="" action="testing.php">
 								<div class="form-group">
 									<label for="email">E-Mail Address</label>
 									<input id="email" type="email" class="form-control" name="email" value="" required autofocus>
