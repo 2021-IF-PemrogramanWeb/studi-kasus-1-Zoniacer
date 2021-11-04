@@ -22,7 +22,7 @@
     ?>
     <div class="fluid-container" style="margin-left: auto; margin-right: auto; width: 80%">
     <section class="content">
-    <img src="https://upload.wikimedia.org/wikipedia/en/0/0e/BWF_Super_Series_Premier.png" alt="logoku" class="rounded mx-auto d-block" style="height: 10%; width: 10%;">
+    <img src="https://upload.wikimedia.org/wikipedia/en/0/0e/BWF_Super_Series_Premier.png" alt="logoku" class="rounded mx-auto d-block p-4" style="height: 30%; width: 30%;">
         <div class="container-fluid">
             <div class="card">
                 <div class="card-header" style="margin-left: auto; margin-right: auto">
