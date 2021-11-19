@@ -1,3 +1,30 @@
+<?php
+session_start();
+require 'functions.php';
+ 
+	if( isset($_POST["login"])){
+
+		$email = $_POST["email"];
+		$password = $_POST["password"];
+		
+		$result = mysqli_query($conn, "SELECT * FROM id WHERE email = '$email'");
+
+		// cek email
+		if( mysqli_num_rows($result) === 1){
+			// cek password
+			$row = mysqli_fetch_assoc($result);
+			if(password_verify($password, $row["password"])){
+				//set session
+				$_SESSION["login"] = true;
+				header("Location: table.php");
+				exit;
+			}
+		}
+
+		$error = true;
+	}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +39,11 @@
 <body class="my-login-page">
 	<section class="h-100">
 		<div class="container h-100">
-		<?php
+
+	<?php if(isset($error)) : ?>
+		<p style="color: red; font-style: italic">username / password salah</p>
+	<?php endif;?>
+		<!--php
           if(isset($_GET['pesan'])){
             if($_GET['pesan'] =="gagal"){
               echo "<div class='alert alert-danger' role='alert' align='center'>Email dan Password Tidak Sesuai</div>";
@@ -21,6 +52,7 @@
             }
           }
   	    ?>
+		-->
 			<div class="row justify-content-md-center h-100">
 				<div class="card-wrapper">
 					<div class="text-center my-4">
@@ -29,7 +61,7 @@
 					<div class="card fat">
 						<div class="card-body">
 							<h4 class="card-title">Login</h4>
-							<form action="../LoginLogic/login.php" method="post" class="my-login-validation" novalidate="">
+							<form action="" method="post" class="my-login-validation" novalidate="">
 								<div class="form-group">
 									<label for="email">E-Mail Address</label>
 									<input id="email" type="email" class="form-control" name="email" value="" required autofocus>
@@ -58,12 +90,12 @@
 								</div>
 
 								<div class="form-group m-0">
-									<button type="submit" class="btn btn-primary btn-block">
+									<button type="submit" name="login" class="btn btn-primary btn-block">
 										Login
 									</button>
 								</div>
 								<div class="mt-4 text-center">
-									Don't have an account? <a href="register.html">Create One</a>
+									Don't have an account? <a href="registrasi.php">Create One</a>
 								</div>
 							</form>
 						</div>

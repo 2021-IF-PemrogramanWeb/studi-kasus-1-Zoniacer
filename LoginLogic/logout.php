@@ -1,4 +1,11 @@
 <?php
 // mengalihkan halaman ke halaman login
-header("location:../pages/login.php?pesan=logout");
+session_start();
+$_SESSION = [];
+session_abort();
+session_destroy();
+
+header("Location: login.php");
+exit;
+
 ?>
