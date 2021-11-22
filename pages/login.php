@@ -1,13 +1,35 @@
 <?php
 session_start();
 require 'functions.php';
- 
+
+
+//cek cookie
+if( isset($_COOKIE['id']) && isset($_COOKIE['key'])){
+	$id = $_COOKIE['id'];
+	$key = $_COOKIE['key'];
+
+	//ambil username berdasarkan id
+	$result = mysqli_query($conn, "SELECT email FROM user WHERE id = $id");
+	$row = mysqli_fetch_assoc($result);
+
+	//cek cookie dan username
+	if( $key === hash('sha256', $row['email'])){
+		$_SESSION['login'] = true;
+	}
+
+ }
+
+if( isset($_SESSION["login"])){
+	header("Location: table.php");
+	exit; 
+}
+
 	if( isset($_POST["login"])){
 
 		$email = $_POST["email"];
 		$password = $_POST["password"];
 		
-		$result = mysqli_query($conn, "SELECT * FROM id WHERE email = '$email'");
+		$result = mysqli_query($conn, "SELECT * FROM user WHERE email = '$email'");
 
 		// cek email
 		if( mysqli_num_rows($result) === 1){
@@ -16,13 +38,23 @@ require 'functions.php';
 			if(password_verify($password, $row["password"])){
 				//set session
 				$_SESSION["login"] = true;
+
+					
+
+				if ( isset($_POST['remember'])){
+					// buat cookie
+					setcookie('id',$row['id'], time()+3600);
+					setcookie('key',hash('sha256', $row['email']), time()+3600);
+				}
 				header("Location: table.php");
 				exit;
 			}
 		}
 
 		$error = true;
-	}
+ 	}
+
+
 ?>
 
 <!DOCTYPE html>

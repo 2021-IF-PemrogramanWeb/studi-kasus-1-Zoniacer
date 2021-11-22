@@ -8,7 +8,7 @@
       <a class="nav-link" href="../pages/chart.php">Chart</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link text-danger" href="../LoginLogic/logout.php">Logout</a>
+      <a class="nav-link text-danger" href="../pages/logout.php">Logout</a>
     </li>
   </ul>
 </nav>

@@ -1,6 +1,7 @@
 <?php
 
 require 'functions.php';
+include('../config.php');
 if( isset($_POST["register"])){
 
     if(registrasi($_POST) > 0){

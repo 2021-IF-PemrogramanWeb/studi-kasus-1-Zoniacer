@@ -26,13 +26,6 @@ session_start();
     <?php include('../fragment/navbar.php')?>
     <div class="fluid-container" style="margin-left: auto; margin-right: auto; width: 80%">
     <section class="content">
-    <?php
-          if(isset($_GET['pesan'])){
-            if($_GET['pesan'] =="berhasil"){
-              echo "<div class='alert alert-success' role='alert' align='center'>Selamat Datang Admin</div>";
-            }
-          }
-  	?>
     <img src="https://upload.wikimedia.org/wikipedia/en/0/0e/BWF_Super_Series_Premier.png" alt="logoku" class="rounded mx-auto d-block p-4" style="height: 30%; width: 30%;">
       <div class="container-fluid">
       <div class="card">
